@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="entity.ContactMapper">
+
+	<resultMap type="Contact" id="contactResultMap">
+		<id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="conect" column="conect" />
+	</resultMap>
+	
+	<select id="findById" parameterType="String" resultMap="contactResultMap">
+		select id, title, conect
+		from contact
+		where contact.id = #{id}
+	</select>
+	
+	<select id="listAll" resultMap="contactResultMap">
+		select id, title, conect
+		from contact
+	</select>
+	
+	<update id="insertOrUpdate" parameterType="Contact">
+		SET FOREIGN_KEY_CHECKS = 0;
+		replace into contact set
+		id=#{id}, title=#{title}, conect=#{conect};
+		SET FOREIGN_KEY_CHECKS = 1;
+	</update>
+	
+	<update id="batchInsertOrUpdate" parameterType="Contact">
+		SET FOREIGN_KEY_CHECKS = 0;
+		<foreach collection="contacts" item="Contact?uncap_first" separator=";" index="index">
+		replace into contact set id=#{contact.id}, title=#{Contact.title}, conect=#{Contact.conect};
+		</foreach>
+		SET FOREIGN_KEY_CHECKS = 1;
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		delete from contact
+		where contact.id = #{id}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="String">
+		delete from contact
+		where contact.id in <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">#{id}</foreach>
+	</delete>
+	
+	<select id="countAll" resultType="long">
+		select count(*) from contact
+	</select>
+	
+</mapper>

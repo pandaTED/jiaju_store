@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="entity.Category">
+
+	<resultMap type="Category" id="categoryResultMap">
+		<id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="littleTitle" column="littleTitle" />
+        <result property="title" column="title" />
+        <result property="childCategoryId" column="childCategoryId" />
+        <result property="addDate" column="addDate" />
+        <result property="weight" column="weight" />
+        <result property="isDelete" column="isDelete" />
+	</resultMap>
+	
+	<select id="findById" parameterType="String" resultMap="categoryResultMap">
+		select id, name, littleTitle, title, childCategoryId, addDate, weight, isDelete
+		from category
+		where category.id = #{id}
+	</select>
+	
+	<select id="listAll" resultMap="categoryResultMap">
+		select id, name, littleTitle, title, childCategoryId, addDate, weight, isDelete
+		from category
+	</select>
+	
+	<update id="insertOrUpdate" parameterType="Category">
+		SET FOREIGN_KEY_CHECKS = 0;
+		replace into category set
+		id=#{id}, name=#{name}, littleTitle=#{littleTitle}, title=#{title}, childCategoryId=#{childCategoryId}, addDate=#{addDate}, weight=#{weight}, isDelete=#{isDelete};
+		SET FOREIGN_KEY_CHECKS = 1;
+	</update>
+	
+	<update id="batchInsertOrUpdate" parameterType="Category">
+		SET FOREIGN_KEY_CHECKS = 0;
+		<foreach collection="categorys" item="Category?uncap_first" separator=";" index="index">
+		replace into category set id=#{category.id}, name=#{Category.name}, littleTitle=#{Category.littleTitle}, title=#{Category.title}, childCategoryId=#{Category.childCategoryId}, addDate=#{Category.addDate}, weight=#{Category.weight}, isDelete=#{Category.isDelete};
+		</foreach>
+		SET FOREIGN_KEY_CHECKS = 1;
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		delete from category
+		where category.id = #{id}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="String">
+		delete from category
+		where category.id in <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">#{id}</foreach>
+	</delete>
+	
+	<select id="countAll" resultType="long">
+		select count(*) from category
+	</select>
+	
+</mapper>

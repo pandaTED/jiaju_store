@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="entity.FurnitureMapper">
+
+	<resultMap type="Furniture" id="furnitureResultMap">
+		<id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="fdescribe" column="fdescribe" />
+        <result property="price" column="price" />
+        <result property="categoryId" column="categoryId" />
+        <result property="imgId" column="imgId" />
+        <result property="isDelete" column="isDelete" />
+        <result property="isHot" column="isHot" />
+        <result property="weight" column="weight" />
+        <result property="addDate" column="addDate" />
+	</resultMap>
+	
+	<select id="findById" parameterType="String" resultMap="furnitureResultMap">
+		select id, title, fdescribe, price, categoryId, imgId, isDelete, isHot, weight, addDate
+		from furniture
+		where furniture.id = #{id}
+	</select>
+	
+	<select id="listAll" resultMap="furnitureResultMap">
+		select id, title, fdescribe, price, categoryId, imgId, isDelete, isHot, weight, addDate
+		from furniture
+	</select>
+	
+	<update id="insertOrUpdate" parameterType="Furniture">
+		SET FOREIGN_KEY_CHECKS = 0;
+		replace into furniture set
+		id=#{id}, title=#{title}, fdescribe=#{fdescribe}, price=#{price}, categoryId=#{categoryId}, imgId=#{imgId}, isDelete=#{isDelete}, isHot=#{isHot}, weight=#{weight}, addDate=#{addDate};
+		SET FOREIGN_KEY_CHECKS = 1;
+	</update>
+	
+	<update id="batchInsertOrUpdate" parameterType="Furniture">
+		SET FOREIGN_KEY_CHECKS = 0;
+		<foreach collection="furnitures" item="Furniture?uncap_first" separator=";" index="index">
+		replace into furniture set id=#{furniture.id}, title=#{Furniture.title}, fdescribe=#{Furniture.fdescribe}, price=#{Furniture.price}, categoryId=#{Furniture.categoryId}, imgId=#{Furniture.imgId}, isDelete=#{Furniture.isDelete}, isHot=#{Furniture.isHot}, weight=#{Furniture.weight}, addDate=#{Furniture.addDate};
+		</foreach>
+		SET FOREIGN_KEY_CHECKS = 1;
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		delete from furniture
+		where furniture.id = #{id}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="String">
+		delete from furniture
+		where furniture.id in <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">#{id}</foreach>
+	</delete>
+	
+	<select id="countAll" resultType="long">
+		select count(*) from furniture
+	</select>
+	
+</mapper>
