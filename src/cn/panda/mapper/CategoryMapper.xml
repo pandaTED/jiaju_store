@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.panda.dao.CategoryMapper">
+
+	<resultMap type="cn.panda.entity.Category" id="categoryResultMap">
+		<id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="littleTitle" column="littleTitle" />
+        <result property="title" column="title" />
+        <result property="childCategoryId" column="childCategoryId" />
+        <result property="addDate" column="addDate" />
+        <result property="weight" column="weight" />
+        <result property="isDelete" column="isDelete" />
+	</resultMap>
+	
+
+</mapper>

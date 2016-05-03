@@ -1,4 +1,4 @@
-package entity;
+package cn.panda.entity;
 
 /**
  * Created by panda on 2016/5/2 0002.

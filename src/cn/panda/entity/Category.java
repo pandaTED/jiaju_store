@@ -1,4 +1,4 @@
-package entity;
+package cn.panda.entity;
 
 import java.util.Date;
 

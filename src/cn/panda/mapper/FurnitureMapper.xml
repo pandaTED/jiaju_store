@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.panda.dao.FurnitureMapper">
+
+	<resultMap type="cn.panda.entity.Furniture" id="furnitureResultMap">
+		<id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="fdescribe" column="fdescribe" />
+        <result property="price" column="price" />
+        <result property="categoryId" column="categoryId" />
+        <result property="imgId" column="imgId" />
+        <result property="isDelete" column="isDelete" />
+        <result property="isHot" column="isHot" />
+        <result property="weight" column="weight" />
+        <result property="addDate" column="addDate" />
+	</resultMap>
+	
+
+	
+</mapper>

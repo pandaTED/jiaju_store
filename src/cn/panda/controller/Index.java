@@ -1,4 +1,4 @@
-package controller;
+package cn.panda.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +14,6 @@ public class Index {
     public String index(){
 
 
-        return "/index/index";
+        return "index/index";
     }
 }

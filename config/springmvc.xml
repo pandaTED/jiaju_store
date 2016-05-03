@@ -7,7 +7,7 @@
 
 
     <!-- 启动Spring 注解扫描 -->
-    <context:component-scan base-package="controller"/>
+    <context:component-scan base-package="cn.panda.controller"/>
 
     <!-- spring mvc核心配置，spring mvc注解配置 -->
     <mvc:annotation-driven />
@@ -49,6 +49,7 @@
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <property name="suffix" value=".ftl"/>
         <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="requestContextAttribute" value="rc"></property>
     </bean>
 
 
