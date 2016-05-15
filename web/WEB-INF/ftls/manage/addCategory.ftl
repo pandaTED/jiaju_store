@@ -1,27 +1,44 @@
 <html>
 <head>
+    <meta charset="UTF-8" />
     <!-- 外部引用文件 -->
-    <link rel="stylesheet" href="<@s.url '/resources/css/common/bootstrap.css'/>"/>
-
     <script src="<@s.url '/resources/lib/jquery/1.11.3/jquery.js'/>"></script>
 
     <title>新增分类</title>
 </head>
-<body>
+<body style="width: 800px;border: 1px solid blue ;text-align: center;">
 
-    <ul>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
-
-    </ul>
-
+    <div style="border: 1px solid red;width: 400px;margin-left: 20%;">
+        <form action="${rc.contextPath}/manage/categoryAdd" method="post">
+                <table>
+                    <tr>
+                        <td>分类名称</td>
+                        <td><input type="text" name="title" /></td>
+                    </tr>
 
 
+                    <tr>
+                        <td>上级分类</td>
+                        <td>
+                            <select>
 
-
+                                <option name="parentCategoryId" value="">最高父类</option>
+                                <#--循环-->
+                                <option></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="reset" value="重新填写" />
+                        </td>
+                        <td>
+                            <input type="submit" value="提交" />
+                        </td>
+                    </tr>
+                </table>
+        </form>
+    </div>
 
 </body>
 </html>

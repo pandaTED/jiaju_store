@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8" />
     <!-- 外部引用文件 -->
     <link rel="stylesheet" href="<@s.url '/resources/css/common/bootstrap.css'/>"/>
 

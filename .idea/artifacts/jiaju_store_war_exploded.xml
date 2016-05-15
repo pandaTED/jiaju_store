@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" build-on-make="true" name="jiaju_store:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/jiaju_store_war_exploded</output-path>
+    <output-path>$PROJECT_DIR$/out</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="jiaju_store/web/Web" />
       <element id="directory" name="WEB-INF">

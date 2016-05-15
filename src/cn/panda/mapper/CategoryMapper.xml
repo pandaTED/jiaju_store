@@ -2,16 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.panda.dao.CategoryMapper">
 
-	<resultMap type="cn.panda.entity.Category" id="categoryResultMap">
-		<id property="id" column="id" />
-        <result property="name" column="name" />
-        <result property="littleTitle" column="littleTitle" />
-        <result property="title" column="title" />
-        <result property="childCategoryId" column="childCategoryId" />
-        <result property="addDate" column="addDate" />
-        <result property="weight" column="weight" />
-        <result property="isDelete" column="isDelete" />
-	</resultMap>
-	
+    <resultMap type="cn.panda.entity.Category" id="categoryResultMap">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="childCategoryId" column="childCategoryId"/>
+        <result property="parentCategoryId" column="parentCategoryId"/>
+        <result property="addDate" column="addDate"/>
+        <result property="weight" column="weight"/>
+        <result property="isDelete" column="isDelete"/>
+    </resultMap>
+
+    <insert id="add" parameterType="cn.panda.entity.Category">
+        INSERT INTO category
+        (
+            id,
+            title,
+            childCategoryId,
+            addDate,
+            weight,
+            isDelete
+        )
+        VALUES
+            (
+                #{id},
+                #{title},
+                #{childCategoryId},
+                now(),
+                0,
+                0
+            );
+    </insert>
+
+
+
+    <!--getAll-->
+    <select id="getAll" resultType="cn.panda.entity.Category">
+
+        SELECT * FROM category ORDER BY weight DESC ;
+    </select>
 
 </mapper>

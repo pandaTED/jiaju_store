@@ -12,9 +12,10 @@ import java.util.Date;
 public class Category {
 
     public String id;
-    public String littleTitle;
+    //public String littleTitle;
     public String title;
     public String childCategoryId;    //子分类的id，每个子类id以逗号隔开
+    public String parentCategoryId;   //父类的id
     public Date addDate;
     public Integer weight;  //权重，权重大的往前排
     public Integer isDelete;        //0为未删除，1为已删除
@@ -26,9 +27,9 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "id='" + id + '\'' +
-                ", littleTitle='" + littleTitle + '\'' +
                 ", title='" + title + '\'' +
                 ", childCategoryId='" + childCategoryId + '\'' +
+                ", parentCategoryId='" + parentCategoryId + '\'' +
                 ", addDate=" + addDate +
                 ", weight=" + weight +
                 ", isDelete=" + isDelete +
@@ -38,6 +39,8 @@ public class Category {
 
     //toString结束
 
+
+
     public String getId() {
         return id;
     }
@@ -46,13 +49,6 @@ public class Category {
         this.id = id;
     }
 
-    public String getLittleTitle() {
-        return littleTitle;
-    }
-
-    public void setLittleTitle(String littleTitle) {
-        this.littleTitle = littleTitle;
-    }
 
     public String getTitle() {
         return title;
@@ -92,5 +88,13 @@ public class Category {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public String getParentCategoryId() {
+        return parentCategoryId;
+    }
+
+    public void setParentCategoryId(String parentCategoryId) {
+        this.parentCategoryId = parentCategoryId;
     }
 }
