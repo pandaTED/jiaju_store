@@ -20,11 +20,14 @@
                     <tr>
                         <td>上级分类</td>
                         <td>
-                            <select>
+                            <select name="parentCategoryId">
 
-                                <option name="parentCategoryId" value="">最高父类</option>
+                                <option>最顶级分类</option>
                                 <#--循环-->
-                                <option></option>
+                                <#list noFatherList as nofather>
+                                    <option value="${nofather.id}">${nofather.title}</option>
+                                </#list>
+
                             </select>
                         </td>
                     </tr>

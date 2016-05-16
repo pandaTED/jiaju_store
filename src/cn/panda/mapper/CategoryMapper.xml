@@ -18,6 +18,7 @@
             id,
             title,
             childCategoryId,
+            parentCategoryId,
             addDate,
             weight,
             isDelete
@@ -27,6 +28,7 @@
                 #{id},
                 #{title},
                 #{childCategoryId},
+                #{parentCategoryId},
                 now(),
                 0,
                 0

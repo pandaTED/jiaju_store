@@ -26,4 +26,8 @@ public interface CategoryMapper {
             List<Category> getAllNoFather();
 
 
+            //获取有父类的分类
+            @Select("select * from category where parentCategoryId is not null")
+            List<Category> getHasFather();
+
 }

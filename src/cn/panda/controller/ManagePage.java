@@ -4,6 +4,7 @@ import cn.panda.dao.CategoryMapper;
 import cn.panda.dao.FurnitureMapper;
 import cn.panda.entity.Category;
 import cn.panda.entity.Furniture;
+import cn.panda.utils.CreateMD5Util;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,14 +43,12 @@ public class ManagePage {
 
     //准备增加分类的页面
     @RequestMapping("/addCategory")
-    public String addCategory() {
-
+    public String addCategory(Model model) {
 
         //获取全部没有父类分类的分类，作为父类供用户选择
         List<Category> noFatherList = categoryMapper.getAllNoFather();
-
-        System.out.println("没有父类的分类："+noFatherList.size());
-
+        //放入model
+        model.addAttribute("noFatherList",noFatherList);
 
         return "/manage/addCategory";
     }
@@ -68,7 +67,7 @@ public class ManagePage {
     @RequestMapping(value = "/categoryAdd",method = RequestMethod.POST)
     public String categoryAdd(Category category) {
 
-        System.out.println();
+        category.setId(CreateMD5Util.createMD5());
 
         System.out.println(category.toString());
 
@@ -82,9 +81,18 @@ public class ManagePage {
     @RequestMapping("/categorylist")
     public String categoryList(Model model){
 
-        List<Category> categoryList = categoryMapper.getAll();
 
-        model.addAttribute("categoryList",categoryList);
+        //无父类的list
+        List<Category> noFatherlist = categoryMapper.getAllNoFather();
+
+        //有父类的list
+        List<Category> hasFatherlist = categoryMapper.getHasFather();
+
+
+        model.addAttribute("noFatherlist",noFatherlist);
+
+        model.addAttribute("hasFatherlist",hasFatherlist);
+
 
         return "/manage/categorylist";
     }
